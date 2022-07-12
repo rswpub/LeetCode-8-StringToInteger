@@ -56,9 +56,17 @@
                 }
             }
 
-            // Convert the digits into a 32-bit signed integer.
+            // If any digits were found, convert the digits into a 32-bit signed integer.
             // But first, to make sure we don't overflow, convert to Int64.
-            Int64 convertedNum = Convert.ToInt64(numPartString);
+            Int64 convertedNum = 0;
+            if (numPartString.Length > 0)
+            {
+                convertedNum = Convert.ToInt64(numPartString);
+            }
+            else
+            {
+                convertedNum = 0;
+            }
 
             // Reapply the negative sign, if appropriate
             if (isNegative)
