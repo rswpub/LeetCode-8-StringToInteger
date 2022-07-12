@@ -59,19 +59,32 @@
             // If any digits were found, convert the digits into a 32-bit signed integer.
             // But first, to make sure we don't overflow, convert to Int64.
             Int64 convertedNum = 0;
-            if (numPartString.Length > 0)
+            if (numPartString.Length > 10)
+            {
+                // To make sure we don't also exceed the Int64 size, cap our search at 10 digits
+                if (isNegative)
+                {
+                    convertedNum = Int32.MinValue;
+                }
+                else
+                {
+                    convertedNum = Int32.MaxValue;
+                }
+            }
+            else if (numPartString.Length > 0)
             {
                 convertedNum = Convert.ToInt64(numPartString);
+
+                // Reapply the negative sign, if appropriate
+                if (isNegative)
+                {
+                    convertedNum *= -1;
+                }
+
             }
             else
             {
                 convertedNum = 0;
-            }
-
-            // Reapply the negative sign, if appropriate
-            if (isNegative)
-            {
-                convertedNum *= -1;
             }
 
             // Now check to see if we're out of the 32-bit int range
