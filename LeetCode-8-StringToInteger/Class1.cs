@@ -30,10 +30,28 @@
                 s = s.Substring(1);
             }
 
+            // Get rid of any leading zeros
+            int endPosOfLeadingZerosIfAny = 0;
+            bool endOfLeadingZerosReached = false;
+            for (; endPosOfLeadingZerosIfAny  < s.Length && !endOfLeadingZerosReached; endPosOfLeadingZerosIfAny++)
+            {
+                switch (s[endPosOfLeadingZerosIfAny])
+                {
+                    case '0':
+                        break;
+                    default:
+                        endOfLeadingZerosReached = true;
+                        break;
+                }
+            }
+
+            // Move the pointer back one character to account for the last iteration of the loop increment
+            endPosOfLeadingZerosIfAny--;
+
             // Read the remaining characters one by one until there are no numeric digits left
             string numPartString = string.Empty;
             bool endOfDigitsReached = false;
-            for (int i = 0; i < s.Length && !endOfDigitsReached; i++)
+            for (int i = endPosOfLeadingZerosIfAny; i < s.Length && !endOfDigitsReached; i++)
             {
                 switch (s[i])
                 {

@@ -17,6 +17,9 @@ namespace TestProject
         [InlineData("999999999999", 2147483647)]
         [InlineData("-999999999999", -2147483648)]
         [InlineData("should return 0 -999999999999", 0)]
+        [InlineData("20000000000000000000000000000", 2147483647)]
+        [InlineData("-20000000000000000000000000000", -2147483648)]
+        [InlineData("  0000000000012345678", 12345678)]
         public void ReturnIntegerFromString(string strNum, int expectedResult)
         {
             // Arrange
