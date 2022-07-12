@@ -34,12 +34,18 @@
 
                 // Remove the leading sign
                 s = s.Substring(1);
+
+                // Handle the case where there was only a leading '+' or '-' but nothing afterwards
+                if (s.Length == 0)
+                {
+                    return 0;
+                }
             }
 
             // Get rid of any leading zeros
             int endPosOfLeadingZerosIfAny = 0;
             bool endOfLeadingZerosReached = false;
-            for (; endPosOfLeadingZerosIfAny  < s.Length && !endOfLeadingZerosReached; endPosOfLeadingZerosIfAny++)
+            for (; endPosOfLeadingZerosIfAny < s.Length && !endOfLeadingZerosReached; endPosOfLeadingZerosIfAny++)
             {
                 switch (s[endPosOfLeadingZerosIfAny])
                 {

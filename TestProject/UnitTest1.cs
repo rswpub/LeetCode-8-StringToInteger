@@ -6,6 +6,8 @@ namespace TestProject
     {
         [Theory]
         [InlineData("", 0)]
+        [InlineData("+", 0)]
+        [InlineData("-", 0)]
         [InlineData("1", 1)]
         [InlineData("+1", 1)]
         [InlineData("-1", -1)]
