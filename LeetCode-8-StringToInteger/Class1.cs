@@ -17,6 +17,12 @@
             // Get rid of any leading whitespace
             s = s.TrimStart();
 
+            // Handle the empty string
+            if (s.Length == 0)
+            {
+                return 0;
+            }
+
             // Check for any '-' or '+' sign
             bool isNegative = false;
             if ((s.Length >= 1) && ((s[0] == '-') || (s[0] == '+')))
