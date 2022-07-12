@@ -14,6 +14,8 @@ namespace TestProject
         [InlineData("  001234 Main St.", 1234)]
         [InlineData("  +0012345 Main St.", 12345)]
         [InlineData("+00123456", 123456)]
+        [InlineData("999999999999", 2147483647)]
+        [InlineData("-999999999999", -2147483648)]
         public void ReturnIntegerFromString(string strNum, int expectedResult)
         {
             // Arrange

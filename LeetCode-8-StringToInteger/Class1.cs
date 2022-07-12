@@ -56,8 +56,9 @@
                 }
             }
 
-            // Convert the digits into a 32-bit signed integer
-            int convertedNum = Convert.ToInt32(numPartString);
+            // Convert the digits into a 32-bit signed integer.
+            // But first, to make sure we don't overflow, convert to Int64.
+            Int64 convertedNum = Convert.ToInt64(numPartString);
 
             // Reapply the negative sign, if appropriate
             if (isNegative)
@@ -65,7 +66,18 @@
                 convertedNum *= -1;
             }
 
-            return convertedNum;
+            // Now check to see if we're out of the 32-bit int range
+            if (convertedNum > Int32.MaxValue)
+            {
+                convertedNum = Int32.MaxValue;
+            }
+            else if (convertedNum < Int32.MinValue)
+            {
+                convertedNum = Int32.MinValue;
+            }
+
+            // Return the converted number as a 32-bit int
+            return (Int32)convertedNum;
         }
 
     }
